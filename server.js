@@ -5,13 +5,15 @@ const mongodb = require("mongodb");
 const mongoose = require("mongoose");
 
 const app = express();
+const routes = require("./routers/routes");
 
-const MongoClient = mongo.MongoClient;
+const MongoClient = mongoose.MongoClient;
 
 const PORT = process.env.PORT || 9000;
 
 const connectOption = {
-  useNewUrlParser: true
+  useNewUrlParser: true,
+  autoIndex: false
 } 
 
 if (process.env.NODE_ENV !== "production") {
@@ -21,20 +23,26 @@ if (process.env.NODE_ENV !== "production") {
 const mongoURI = process.env.MONGODB_URI;
 mongoose.connect(mongoURI, connectOption);
 
+// CORS, body parser, and express static middleware
 app.use(cors());
-app.use(bodyParser.urlencoded({"extended": false}));
-
+app.use(bodyParser.urlencoded({"extended": true}));
+app.use(bodyParser.json());
 app.use(express.static("public"));
 
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/public/index.html");
 });
 
-// error middleware
+// Routes middleware
+app.use("/api/exercise", routes);
+
+// Error Handling middleware
 app.use((err, req, res, next) => {
-  console.log(err.stack)
-  res.sendStatus(500);
+  console.log(err); 
+  res.status(err.status).send(err.errors);
+  // res.type("txt").send(err.errors);
 })
+
 
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
