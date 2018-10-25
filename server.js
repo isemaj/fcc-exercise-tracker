@@ -38,8 +38,9 @@ app.use("/api/exercise", routes);
 
 // Error Handling middleware
 app.use((err, req, res, next) => {
-  console.log(err); 
-  res.status(err.status).send(err.errors);
+  // res.status(err.status).send(err.message);
+  res.send(err.message);
+  // res.send(err.errors);
   // res.type("txt").send(err.errors);
 })
 
