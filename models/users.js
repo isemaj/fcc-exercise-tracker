@@ -6,15 +6,16 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const usersSchema = new Schema({
+  _id: {
+    type: String,
+    // index: true,
+    default: shortid.generate
+  },
   username: {
     type: String,
     unique: true,
     required: true
-  },
-  _id: {
-    type: String,
-    default: shortid.generate
-  },
+  }
 })
 
 usersSchema.plugin(uniqueValidator);

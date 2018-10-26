@@ -14,13 +14,13 @@ const PORT = process.env.PORT || 9000;
 const connectOption = {
   useNewUrlParser: true,
   autoIndex: false
-} 
+}
 
 if (process.env.NODE_ENV !== "production") {
   const dotenv = require("dotenv").config()
 }
 
-const mongoURI = process.env.MONGODB_URI;
+const mongoURI = process.env.NODE_ENV !== "production" ? `${process.env.MONGODB_URI}${process.env.DB}` : process.env.MONGODB_URI;
 mongoose.connect(mongoURI, connectOption);
 
 // CORS, body parser, and express static middleware
@@ -38,8 +38,8 @@ app.use("/api/exercise", routes);
 
 // Error Handling middleware
 app.use((err, req, res, next) => {
-  // res.status(err.status).send(err.message);
   res.send(err.message);
+  // res.status(err.status).send(err.message);
   // res.send(err.errors);
   // res.type("txt").send(err.errors);
 })
