@@ -35,7 +35,7 @@ router.post("/add", (req, res, next) => {
 
     exercise.save((err, enteredExercise) => {
       // what happened in pre-save can see here, ie `this.date`
-      console.log(enteredExercise)
+      // console.log(enteredExercise)
       if(err) { return next(err) };
       enteredExercise = enteredExercise.toObject();
       delete enteredExercise.__v;
@@ -55,6 +55,8 @@ router.get("/users", (req, res, next) => {
 })
 
 router.get("/log", (req, res, next) => {
+  const fromDate = new Date(req.query.from);
+  const toDate = new Date(req.query.to);
   Users.findById(req.query.userId, (err, result) => {
     if(err) { return next(err) };
     if(!result) {
@@ -63,23 +65,43 @@ router.get("/log", (req, res, next) => {
       })
     }
 
-    // Exercise.find({
-    //   userId: req.query.userId
-    // })
-    // .exec((err, ))
+       Exercise.find(
+        {
+          userId: req.query.userId, 
+          date: {
+            $lte: toDate != "Invalid Date" ? toDate.getTime() : Date.now(),
+            $gte: fromDate != "Invalid Date" ? fromDate.getTime() : 0 
+          }
+        }, 
+        { 
+          __v: 0, 
+          _id: 0
+        }
+      )
+      .exec((err, exercise) => {
+        if(err) { return next(err) };
+        const response = {
+          _id: req.query.userId,
+          username: result.username,
+          from: fromDate != "Invalid Date" ? fromDate.toDateString() : undefined,
+          to: toDate != "Invalid Date" ? toDate.toDateString() : undefined,
+          count: exercise.length, 
+          log: exercise.map(e => ({
+            description: e.description,
+            duration: e.duration,
+            date: e.date.toDateString()
+          })) 
+        }
+        res.json(response)
+      })
+ 
 
-    Exercise.find({userId: req.query.userId}, (err, exercise) => {
-      res.json(exercise)
-    })
 
   })
 })
 
 // test route // remove it later
 router.get("/exercises", (req, res, next) => {
-  // Exercise.find({}, (err, exercise) => {
-  //   res.json(exercise)
-  // });
   Exercise.find({})
     .exec((err, exercise) => {
       res.json(exercise);
