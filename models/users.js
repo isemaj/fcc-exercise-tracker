@@ -8,7 +8,7 @@ const Schema = mongoose.Schema;
 const usersSchema = new Schema({
   _id: {
     type: String,
-    // index: true,
+    index: true,
     default: shortid.generate
   },
   username: {

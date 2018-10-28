@@ -78,8 +78,11 @@ router.get("/log", (req, res, next) => {
           _id: 0
         }
       )
+      .limit(+req.query.limit)
       .exec((err, exercise) => {
-        if(err) { return next(err) };
+        if(err) { return next({
+          message: err.message
+        }) };
         const response = {
           _id: req.query.userId,
           username: result.username,
@@ -94,9 +97,6 @@ router.get("/log", (req, res, next) => {
         }
         res.json(response)
       })
- 
-
-
   })
 })
 
