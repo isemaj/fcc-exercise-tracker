@@ -22,9 +22,7 @@ if (process.env.NODE_ENV !== "production") {
 
 const mongoURI = process.env.NODE_ENV !== "production" ? `${process.env.MONGODB_URI}${process.env.DB}` : process.env.MONGODB_URI;
 mongoose.connect(mongoURI, connectOption)
-  .then(() => {
-    console.log("MongoDB connected...");
-  })
+  .then(() => console.log("MongoDB connected..."))
   .catch(err => console.log(err));
 
 // CORS, body parser, and express static middleware
