@@ -49,8 +49,18 @@ router.post("/add", (req, res, next) => {
 });
 
 router.get("/", (req, res, next) => {
-  console.log('enter here');
-  res.render("index");
+  Users.find({}, (err, docs) => {
+    let sampleName;
+    if (docs.length === 0) {
+      sampleName = 'submit-a-username-first';
+      res.render("index", {sampleName});
+    } else {
+      Exercise.find({ username: docs[0].username }, (err, docs) => {
+        sampleName = docs[0].username; 
+        res.render("index", {sampleName});
+      });
+    }
+  });
 });
 
 router.get("/users", (req, res, next) => {
