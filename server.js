@@ -31,10 +31,6 @@ app.use(bodyParser.urlencoded({"extended": true}));
 app.use(bodyParser.json());
 app.use(express.static("public"));
 
-//app.get("/", (req, res) => {
-  //res.sendFile(__dirname + "/public/index.html");
-//});
-
 // Routes middleware
 app.use("/", routes);
 app.use("/api/exercise", routes);
