@@ -20,7 +20,7 @@ if (process.env.NODE_ENV !== "production") {
   const dotenv = require("dotenv").config()
 }
 
-const mongoURI = process.env.NODE_ENV !== "production" ? `${process.env.MONGODB_URI}${process.env.DB}` : process.env.MONGODB_URI;
+const mongoURI = process.env.NODE_ENV !== "production" ? `${process.env.MONGODB_URI_DEV}${process.env.DB}` : process.env.MONGODB_URI;
 mongoose.connect(mongoURI, connectOption)
   .then(() => console.log("MongoDB connected..."))
   .catch(err => console.log(err));
