@@ -52,11 +52,15 @@ router.get("/", (req, res, next) => {
   Users.find({}, (err, docs) => {
     let sampleId;
     if (docs.length === 0) {
-      sampleId = 'submit-a-username-first';
+      sampleId = "submit-a-username-first";
       res.render("index", {sampleId});
     } else {
       Exercise.find({ username: docs[0].username }, (err, docs) => {
-        sampleId = docs[0].userId;
+        if (docs.length === 0){
+          sampleId = "create-an-exercise-data-first";
+        } else {
+          sampleId = docs[0].userId;
+        }
         res.render("index", {sampleId});
       });
     }
