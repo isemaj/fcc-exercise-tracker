@@ -8,16 +8,8 @@
     "dev": "NODE_ENV=development nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@gitlab.com/isemaj/fcc-exercise-tracker.git"
-  },
   "author": "James Itum",
   "license": "MIT",
-  "bugs": {
-    "url": "https://gitlab.com/isemaj/fcc-exercise-tracker/issues"
-  },
-  "homepage": "https://gitlab.com/isemaj/fcc-exercise-tracker#readme",
   "engines": {
     "node": "8.10.0"
   },
