@@ -40,9 +40,9 @@ html
         strong limit
         |  = number
       h3 Example Usage:
-      a(target='_blank', href='https://isemaj-exercise-tracker.herokuapp.com/api/exercise/log?userId=9EQ03yfme')
+      a(target='_blank', href=`/api/exercise/log?userId=${sampleName}`)
         | [this_project_url]/api/exercise/log?userId=
-        span 9EQ03yfme
+        span #{sampleName} 
       br
       a(target='_blank', href='https://isemaj-exercise-tracker.herokuapp.com/api/exercise/log?userId=9EQ03yfme&from=2004-03-01')
         | [this_project_url]/api/exercise/log?userId=

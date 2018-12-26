@@ -50,14 +50,14 @@ router.post("/add", (req, res, next) => {
 
 router.get("/", (req, res, next) => {
   Users.find({}, (err, docs) => {
-    let sampleName;
+    let sampleId;
     if (docs.length === 0) {
-      sampleName = 'submit-a-username-first';
-      res.render("index", {sampleName});
+      sampleId = 'submit-a-username-first';
+      res.render("index", {sampleId});
     } else {
       Exercise.find({ username: docs[0].username }, (err, docs) => {
-        sampleName = docs[0].username; 
-        res.render("index", {sampleName});
+        sampleId = docs[0].userId;
+        res.render("index", {sampleId});
       });
     }
   });
