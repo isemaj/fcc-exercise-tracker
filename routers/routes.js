@@ -115,12 +115,4 @@ router.get("/log", (req, res, next) => {
   })
 })
 
-// test route // remove it later
-router.get("/exercises", (req, res, next) => {
-  Exercise.find({})
-    .exec((err, exercise) => {
-      res.json(exercise);
-    })
-})
-
 module.exports = router;
