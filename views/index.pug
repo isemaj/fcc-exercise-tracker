@@ -40,27 +40,27 @@ html
         strong limit
         |  = number
       h3 Example Usage:
-      a(target='_blank', href=`/api/exercise/log?userId=${sampleName}`)
+      a(target='_blank', href=`/api/exercise/log?userId=${sampleId}`)
         | [this_project_url]/api/exercise/log?userId=
-        span #{sampleName} 
+        span #{sampleId} 
       br
-      a(target='_blank', href='https://isemaj-exercise-tracker.herokuapp.com/api/exercise/log?userId=9EQ03yfme&from=2004-03-01')
+      a(target='_blank', href=`/api/exercise/log?userId=${sampleId}&from=2004-03-01`)
         | [this_project_url]/api/exercise/log?userId=
-        span 9EQ03yfme
+        span #{sampleId} 
         | &amp;from=
         span 2004-03-01
       br
-      a(target='_blank', href='https://isemaj-exercise-tracker.herokuapp.com/api/exercise/log?userId=9EQ03yfme&from=2004-03-01&to=2006-11-31')
+      a(target='_blank', href=`/api/exercise/log?userId=${sampleId}&from=2004-03-01&to=2006-11-31`)
         | [this_project_url]/api/exercise/log?userId=
-        span 9EQ03yfme
+        span #{sampleId} 
         | &amp;from=
         span 2004-03-01
         | &amp;to=
         span 2006-11-31
       br
-      a(target='_blank', href='https://isemaj-exercise-tracker.herokuapp.com/api/exercise/log?userId=9EQ03yfme&from=2004-03-01&to=2006-11-31&limit=2')
+      a(target='_blank', href=`/api/exercise/log?userId=${sampleId}&from=2004-03-01&to=2006-11-31&limit=2`)
         | [this_project_url]/api/exercise/log?userId=
-        span 9EQ03yfme
+        span #{sampleId} 
         | &amp;from=
         span 2004-03-01
         | &amp;to=
