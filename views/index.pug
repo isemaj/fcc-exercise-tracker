@@ -1,0 +1,74 @@
+doctype html
+
+html
+  head
+    title Exercise Tracker | Free Code Camp
+    link(href='https://fonts.googleapis.com/css?family=Roboto:400,700,900', rel='stylesheet', type='text/css')
+    link(href='style.css', rel='stylesheet', type='text/css')
+  body
+    .container
+      h1 AExercise tracker
+      form(action='/api/exercise/new-user', method='post')
+        h3 Create a new user
+        p
+          code POST /api/exercise/new-user
+        input#url_input(type='text', name='username', placeholder='username')
+        br
+        input.post-button(type='submit', value='Submit')
+      form(action='/api/exercise/add', method='post')
+        h3 Add exercises
+        p
+          code POST /api/exercise/add
+        input#url_input(type='text', name='userId', placeholder='userId*')
+        input#url_input(type='text', name='description', placeholder='description*')
+        input#url_input(type='text', name='duration', placeholder='duration* (mins.)')
+        input#url_input(type='text', name='date', placeholder='date (yyyy-mm-dd)')
+        br
+        input.post-button(type='submit', value='Submit')
+      p
+        strong GET users&apos;s exercise log: 
+        br
+        code GET /api/exercise/log?{userId}[&amp;from][&amp;to][&amp;limit]
+      p
+        strong { }
+        |  = required, 
+        strong [ ]
+        |  = optional
+      p
+        strong from, to
+        |  = dates (yyyy-mm-dd); 
+        strong limit
+        |  = number
+      h3 Example Usage:
+      a(target='_blank', href='https://isemaj-exercise-tracker.herokuapp.com/api/exercise/log?userId=9EQ03yfme')
+        | [this_project_url]/api/exercise/log?userId=
+        span 9EQ03yfme
+      br
+      a(target='_blank', href='https://isemaj-exercise-tracker.herokuapp.com/api/exercise/log?userId=9EQ03yfme&from=2004-03-01')
+        | [this_project_url]/api/exercise/log?userId=
+        span 9EQ03yfme
+        | &amp;from=
+        span 2004-03-01
+      br
+      a(target='_blank', href='https://isemaj-exercise-tracker.herokuapp.com/api/exercise/log?userId=9EQ03yfme&from=2004-03-01&to=2006-11-31')
+        | [this_project_url]/api/exercise/log?userId=
+        span 9EQ03yfme
+        | &amp;from=
+        span 2004-03-01
+        | &amp;to=
+        span 2006-11-31
+      br
+      a(target='_blank', href='https://isemaj-exercise-tracker.herokuapp.com/api/exercise/log?userId=9EQ03yfme&from=2004-03-01&to=2006-11-31&limit=2')
+        | [this_project_url]/api/exercise/log?userId=
+        span 9EQ03yfme
+        | &amp;from=
+        span 2004-03-01
+        | &amp;to=
+        span 2006-11-31
+        | &amp;limit=
+        span 2
+    .footer
+      p
+        | by 
+        a(href='https://gitlab.com/isemaj') James Itum
+

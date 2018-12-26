@@ -48,6 +48,11 @@ router.post("/add", (req, res, next) => {
   })
 });
 
+router.get("/", (req, res, next) => {
+  console.log('enter here');
+  res.render("index");
+});
+
 router.get("/users", (req, res, next) => {
   Users.find({}, (err, users) => {
     res.json(users)

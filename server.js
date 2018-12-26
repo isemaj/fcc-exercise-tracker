@@ -24,17 +24,19 @@ mongoose.connect(mongoURI, connectOption)
   .then(() => console.log("MongoDB connected..."))
   .catch(err => console.log(err));
 
-// CORS, body parser, and express static middleware
+// CORS, body parser, template engine and express static middleware
+app.set("view engine", "pug");
 app.use(cors());
 app.use(bodyParser.urlencoded({"extended": true}));
 app.use(bodyParser.json());
 app.use(express.static("public"));
 
-app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/public/index.html");
-});
+//app.get("/", (req, res) => {
+  //res.sendFile(__dirname + "/public/index.html");
+//});
 
 // Routes middleware
+app.use("/", routes);
 app.use("/api/exercise", routes);
 
 // Error Handling middleware
